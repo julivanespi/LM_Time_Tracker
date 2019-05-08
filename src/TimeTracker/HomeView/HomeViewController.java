@@ -5,7 +5,7 @@
  */
 package TimeTracker.HomeView;
 
-import java.io.File;
+import TimeTracker.StartUp.InitTimeTracker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +34,7 @@ public class HomeViewController implements Initializable {
     @FXML
     private void homeButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 1!");
-        Parent homeButtonParent = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+        Parent homeButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
         Scene homeButtonScene = new Scene(homeButtonParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(homeButtonScene);
@@ -44,7 +44,7 @@ public class HomeViewController implements Initializable {
     @FXML
     private void timerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 2!");
-        Parent timerButtonParent = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+        Parent timerButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Timer/Scene2.fxml"));
         Scene timerButtonScene = new Scene(timerButtonParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(timerButtonScene);
@@ -54,7 +54,7 @@ public class HomeViewController implements Initializable {
     @FXML
     private void chargeNumberButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 3!");
-        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("Scene3.fxml"));
+        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/ChargeNumber/Scene3.fxml"));
         Scene chargeNumButtonScene = new Scene(chargeNumParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(chargeNumButtonScene);
@@ -63,20 +63,11 @@ public class HomeViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        String fileName = System.getProperty("user.home") + "/Desktop/TimerTracker/charge_numbers.txt";
-        String filePathLoc = System.getProperty("user.home") + "/Desktop/TimerTracker/";
-        if (!(new File(fileName).exists())) {
-            File filePath = new File(filePathLoc);
-            File chargeNumFile = new File(fileName);
-            try {
-                filePath.mkdirs();
-                chargeNumFile.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            InitTimeTracker.initFiles();
+        } catch (IOException ex) {
+            Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
 }

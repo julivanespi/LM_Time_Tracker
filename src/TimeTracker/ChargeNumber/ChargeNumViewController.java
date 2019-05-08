@@ -69,7 +69,7 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private void homeButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 1!");
-        Parent homeButtonParent = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+        Parent homeButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
         Scene homeButtonScene = new Scene(homeButtonParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(homeButtonScene);
@@ -79,7 +79,7 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private void timerButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 2!");
-        Parent timerButtonParent = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+        Parent timerButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Timer/Scene2.fxml"));
         Scene timerButtonScene = new Scene(timerButtonParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(timerButtonScene);
@@ -89,7 +89,7 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private void chargeNumberButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 3!");
-        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("Scene3.fxml"));
+        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/ChargeNumber/Scene3.fxml"));
         Scene chargeNumButtonScene = new Scene(chargeNumParent);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(chargeNumButtonScene);
@@ -98,12 +98,9 @@ public class ChargeNumViewController implements Initializable {
 
     @FXML
     private void addChargeNumButtonAction(ActionEvent event) {
-        System.out.print("Test");
         if (chargeNumList.get(0).getIoNumber().equalsIgnoreCase("")) {
-            System.out.print("Clearing the list because it said Add");
             chargeNumList.clear();
         } else if (chargeNumList.get(0).getIoNumber().equalsIgnoreCase("Add")) {
-            System.out.print("Clearing the list because it was null");
             chargeNumList.clear();
         }
         ChargeNumber cn = new ChargeNumber(ioTextFieldBox.getText(), nicknameTextFieldBox.getText());
@@ -118,9 +115,8 @@ public class ChargeNumViewController implements Initializable {
 
     @FXML
     private void saveChargeNumsButtonAction(ActionEvent event) throws IOException {
-        String fileName = System.getProperty("user.home") + "/Desktop/TimerTracker/charge_numbers.txt";
+        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
         File dir = new File(fileName);
-        dir.createNewFile();
         BufferedWriter writer = new BufferedWriter(new FileWriter(dir));
         for (ChargeNumber ioNum : myTableView.getItems()) {
             writer.write(ioNum.getIoNumber() + "," + ioNum.getNickName());
@@ -149,9 +145,8 @@ public class ChargeNumViewController implements Initializable {
     }
 
     public ObservableList<ChargeNumber> readSavedChargeNum() throws IOException {
-        String fileName = System.getProperty("user.home") + "/Desktop/TimerTracker/charge_numbers.txt";
+        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
         File dir = new File(fileName);
-        dir.createNewFile();
         ObservableList<ChargeNumber> cn = observableArrayList();
         BufferedReader reader = Files.newBufferedReader(Paths.get(fileName));
         String line;
@@ -159,7 +154,6 @@ public class ChargeNumViewController implements Initializable {
             String[] ioAndNickName = line.split(",");
             // Add the student to the list
             cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
-            System.out.println(line);
 
         }
         return cn;
