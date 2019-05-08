@@ -97,7 +97,12 @@ public class ChargeNumViewController implements Initializable {
 
     @FXML
     private void addChargeNumButtonAction(ActionEvent event) {
-        if (chargeNumList.get(0).getIoNumber().equalsIgnoreCase("Add")) {
+        System.out.print("Test");
+        if (chargeNumList.get(0).getIoNumber().equalsIgnoreCase("")) {
+            System.out.print("Clearing the list because it said Add");
+            chargeNumList.clear();
+        } else if (chargeNumList.get(0).getIoNumber().equalsIgnoreCase("Add")) {
+            System.out.print("Clearing the list because it was null");
             chargeNumList.clear();
         }
         ChargeNumber cn = new ChargeNumber(ioTextFieldBox.getText(), nicknameTextFieldBox.getText());
@@ -126,7 +131,7 @@ public class ChargeNumViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            if(readSavedChargeNum() == null){
+            if (readSavedChargeNum() == null) {
                 chargeNumList = observableArrayList(new ChargeNumber("Add", "Charge #"));
             } else {
                 chargeNumList = readSavedChargeNum();
@@ -154,7 +159,7 @@ public class ChargeNumViewController implements Initializable {
             // Add the student to the list
             cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
             System.out.println(line);
-            
+
         }
         return cn;
     }

@@ -5,10 +5,12 @@
  */
 package TimeTracker;
 
-import java.awt.TextField;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
@@ -60,12 +61,22 @@ public class HomeViewController implements Initializable {
         window.show();
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        String fileName = System.getProperty("user.home") + "/Desktop/TimerTracker/charge_numbers.txt";
+        String filePathLoc = System.getProperty("user.home") + "/Desktop/TimerTracker/";
+        if (!(new File(fileName).exists())) {
+            File filePath = new File(filePathLoc);
+            File chargeNumFile = new File(fileName);
+            try {
+                filePath.mkdirs();
+                chargeNumFile.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
 
     }
-
 
 }
