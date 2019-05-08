@@ -59,11 +59,16 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private Button saveCharNumsButton;
     @FXML
-    private TableColumn<ChargeNumber, String> ioColumn = new TableColumn("IO");
+    private final TableColumn<ChargeNumber, String> ioColumn;
     @FXML
-    private TableColumn<ChargeNumber, String> nicknameColumn = new TableColumn("Nickname");
+    private final TableColumn<ChargeNumber, String> nicknameColumn;
 
     ObservableList<ChargeNumber> chargeNumList = observableArrayList();
+
+    public ChargeNumViewController() {
+        this.nicknameColumn = new TableColumn("Nickname");
+        this.ioColumn = new TableColumn("IO");
+    }
 
     // Side menu buttons
     @FXML
@@ -96,6 +101,12 @@ public class ChargeNumViewController implements Initializable {
         window.show();
     }
 
+    /**
+     * This method is called when the user clicks the "Add" button when
+     * presenting Scene3.
+     *
+     * @param event
+     */
     @FXML
     private void addChargeNumButtonAction(ActionEvent event) {
         if (chargeNumList.get(0).getIoNumber().equalsIgnoreCase("")) {
@@ -111,8 +122,16 @@ public class ChargeNumViewController implements Initializable {
 
     @FXML
     private void deleteChargeNumButtonAction(ActionEvent event) {
+        // TODO: Add functionality to delete charge numbers
     }
 
+    /**
+     * This method is called when the user clicks the "Save" button when
+     * presenting Scene3.
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     private void saveChargeNumsButtonAction(ActionEvent event) throws IOException {
         String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
@@ -127,12 +146,10 @@ public class ChargeNumViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // read the charge number file in documents
         try {
-            if (readSavedChargeNum() == null) {
-                chargeNumList = observableArrayList(new ChargeNumber("Add", "Charge #"));
-            } else {
-                chargeNumList = readSavedChargeNum();
-            }
+            chargeNumList = readSavedChargeNum();
         } catch (IOException ex) {
             Logger.getLogger(ChargeNumViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -144,6 +161,12 @@ public class ChargeNumViewController implements Initializable {
         myTableView.setItems(chargeNumList);
     }
 
+    /**
+     * This reads the charge number file and adds the numbers to the column.
+     *
+     * @return cn ObservableList of ChargeNumber objects.
+     * @throws IOException
+     */
     public ObservableList<ChargeNumber> readSavedChargeNum() throws IOException {
         String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
         File dir = new File(fileName);
@@ -154,7 +177,6 @@ public class ChargeNumViewController implements Initializable {
             String[] ioAndNickName = line.split(",");
             // Add the student to the list
             cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
-
         }
         return cn;
     }
