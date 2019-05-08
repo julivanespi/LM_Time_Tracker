@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package helloworldfxmlgui;
+package TimeTracker;
 
-import java.awt.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,18 +16,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 /**
  *
  * @author Julio
  */
-public class HomeViewController implements Initializable {
-
-    @FXML
-    private TableView myTableView;
-
+public class TimerViewController implements Initializable{
+    
     // Side menu buttons
     @FXML
     private void homeButtonAction(ActionEvent event) throws IOException {
@@ -60,12 +55,8 @@ public class HomeViewController implements Initializable {
         window.show();
     }
 
-
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-
+    public void initialize(URL location, ResourceBundle resources) {
     }
-
-
+    
 }
