@@ -59,16 +59,11 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private Button saveCharNumsButton;
     @FXML
-    private final TableColumn<ChargeNumber, String> ioColumn;
+    private TableColumn<ChargeNumber, String> ioColumn = new TableColumn("IO");
     @FXML
-    private final TableColumn<ChargeNumber, String> nicknameColumn;
+    private TableColumn<ChargeNumber, String> nicknameColumn = new TableColumn("Nickname");
 
     ObservableList<ChargeNumber> chargeNumList = observableArrayList();
-
-    public ChargeNumViewController() {
-        this.nicknameColumn = new TableColumn("Nickname");
-        this.ioColumn = new TableColumn("IO");
-    }
 
     // Side menu buttons
     @FXML
@@ -149,7 +144,11 @@ public class ChargeNumViewController implements Initializable {
 
         // read the charge number file in documents
         try {
-            chargeNumList = readSavedChargeNum();
+            if (readSavedChargeNum() == null) {
+                chargeNumList = observableArrayList(new ChargeNumber("Add", "Charge #"));
+            } else {
+                chargeNumList = readSavedChargeNum();
+            }
         } catch (IOException ex) {
             Logger.getLogger(ChargeNumViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
