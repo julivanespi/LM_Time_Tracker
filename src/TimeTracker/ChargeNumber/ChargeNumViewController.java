@@ -144,6 +144,7 @@ public class ChargeNumViewController implements Initializable {
 
         // read the charge number file in documents
         try {
+            // might not have to add this if else
             if (readSavedChargeNum() == null) {
                 chargeNumList = observableArrayList(new ChargeNumber("Add", "Charge #"));
             } else {
@@ -175,7 +176,6 @@ public class ChargeNumViewController implements Initializable {
         while ((line = reader.readLine()) != null) {
             String[] ioAndNickName = line.split(",");
             // Add the student to the list
-            System.out.println(ioAndNickName[0] + " " + ioAndNickName[1]);
             cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
         }
         return cn;
