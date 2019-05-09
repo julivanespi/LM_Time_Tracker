@@ -34,7 +34,7 @@ public class InitTimeTracker {
                 filePath.mkdirs();
                 chargeNumFile.createNewFile();
                 PrintWriter writer = new PrintWriter(chargeNumFile, "UTF-8");
-                writer.println("Add, Charge Number");
+                writer.println("Add,Charge_Number");
                 writer.close();
 
                 System.out.println("done!");

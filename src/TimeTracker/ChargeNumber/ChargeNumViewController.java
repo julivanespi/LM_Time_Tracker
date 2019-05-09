@@ -176,6 +176,7 @@ public class ChargeNumViewController implements Initializable {
         while ((line = reader.readLine()) != null) {
             String[] ioAndNickName = line.split(",");
             // Add the student to the list
+            System.out.println(ioAndNickName[0] + " " + ioAndNickName[1]);
             cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
         }
         return cn;
