@@ -22,6 +22,7 @@ public class TimerTrackerLauncher extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
 
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("/TimeTracker/HomeView/HomeView.css");
 
         stage.setScene(scene);
         stage.setResizable(false);

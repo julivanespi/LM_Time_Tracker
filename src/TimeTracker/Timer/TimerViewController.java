@@ -22,14 +22,15 @@ import javafx.stage.Stage;
  *
  * @author Julio
  */
-public class TimerViewController implements Initializable{
-    
+public class TimerViewController implements Initializable {
+
     // Side menu buttons
     @FXML
     private void homeButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 1!");
         Parent homeButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
         Scene homeButtonScene = new Scene(homeButtonParent);
+        homeButtonScene.getStylesheets().add("/TimeTracker/HomeView/HomeView.css");
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(homeButtonScene);
         window.show();
@@ -40,6 +41,7 @@ public class TimerViewController implements Initializable{
         System.out.println("Scene 2!");
         Parent timerButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Timer/Scene2.fxml"));
         Scene timerButtonScene = new Scene(timerButtonParent);
+        timerButtonScene.getStylesheets().add("/TimeTracker/Timer/TimerView.css");
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(timerButtonScene);
         window.show();
@@ -50,6 +52,7 @@ public class TimerViewController implements Initializable{
         System.out.println("Scene 3!");
         Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/ChargeNumber/Scene3.fxml"));
         Scene chargeNumButtonScene = new Scene(chargeNumParent);
+        chargeNumButtonScene.getStylesheets().add("/TimeTracker/ChargeNumber/ChargeNumberView.css");
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(chargeNumButtonScene);
         window.show();
@@ -58,5 +61,5 @@ public class TimerViewController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
-    
+
 }
