@@ -6,6 +6,7 @@
 package TimeTracker.ChargeNumber;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.CheckBox;
 
 /**
  *
@@ -15,10 +16,12 @@ public class ChargeNumber {
     
     private SimpleStringProperty ioNumber;
     private SimpleStringProperty nickName;
+    private CheckBox select;
     
     ChargeNumber(String ioNumber, String nickName){
         this.ioNumber = new SimpleStringProperty(ioNumber);
         this.nickName = new SimpleStringProperty(nickName);
+        this.select = new CheckBox();
     }
 
     public String getIoNumber() {
@@ -35,6 +38,14 @@ public class ChargeNumber {
 
     public void setNickName(String nickName) {
         this.nickName = new SimpleStringProperty(nickName);
+    }
+    
+    public CheckBox getSelect(){
+        return select;
+    }
+    
+    public void setSelect(CheckBox select){
+        this.select = select;
     }
     
      

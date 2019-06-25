@@ -67,6 +67,7 @@
                      <columns>
                         <TableColumn fx:id="ioColumn" prefWidth="274.0" text="IO" />
                         <TableColumn fx:id="nicknameColumn" minWidth="0.0" prefWidth="302.0" text="Nickname" />
+                        <TableColumn fx:id="selectColumn" minWidth="0.0" prefWidth="302.0" text="Selected" />
                      </columns></TableView>
                   <Button fx:id="deleteCharNumButton" layoutX="617.0" layoutY="224.0" mnemonicParsing="false" onAction="#deleteChargeNumButtonAction" text="Delete" />
                   <Button fx:id="saveCharNumsButton" layoutX="617.0" layoutY="186.0" mnemonicParsing="false" onAction="#saveChargeNumsButtonAction" prefHeight="25.0" prefWidth="51.0" text="Save" />

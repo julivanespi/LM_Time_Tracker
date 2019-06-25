@@ -5,7 +5,6 @@
  */
 package TimeTracker.ChargeNumber;
 
-import TimeTracker.ChargeNumber.ChargeNumber;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,10 +13,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +28,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,13 +60,17 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private Button saveCharNumsButton;
     @FXML
+    private Button settingButton;
+    
+    @FXML
     private TableColumn<ChargeNumber, String> ioColumn = new TableColumn("IO");
     @FXML
     private TableColumn<ChargeNumber, String> nicknameColumn = new TableColumn("Nickname");
+    @FXML
+    private TableColumn<ChargeNumber, CheckBox> selectColumn = new TableColumn("Select");
+    
 
     ObservableList<ChargeNumber> chargeNumList = observableArrayList();
-    @FXML
-    private Button settingButton;
 
     // Side menu buttons
     @FXML
@@ -128,6 +133,15 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private void deleteChargeNumButtonAction(ActionEvent event) {
         // TODO: Add functionality to delete charge numbers
+        //myTableView.getItems().removeAll(myTableView.getSelectionModel().getSelectedItem());
+        ObservableList<ChargeNumber> dataListRemove = FXCollections.observableArrayList();
+        // looping through all the checked charge numbers
+        for(ChargeNumber pair : chargeNumList){
+            if(pair.getSelect().isSelected()){
+                dataListRemove.add(pair);
+            }
+        }
+        chargeNumList.removeAll(dataListRemove);
     }
 
     /**
@@ -165,9 +179,11 @@ public class ChargeNumViewController implements Initializable {
         }
         ioColumn.setCellValueFactory(new PropertyValueFactory<>("IoNumber"));
         nicknameColumn.setCellValueFactory(new PropertyValueFactory<>("NickName"));
+        selectColumn.setCellValueFactory(new PropertyValueFactory<>("Select"));
         // Size the columns evently
-        ioColumn.prefWidthProperty().bind(myTableView.widthProperty().divide(2)); // w * 1/4
-        nicknameColumn.prefWidthProperty().bind(myTableView.widthProperty().divide(2)); // w * 1/4
+        ioColumn.prefWidthProperty().bind(myTableView.widthProperty().divide(3)); // w * 1/3
+        nicknameColumn.prefWidthProperty().bind(myTableView.widthProperty().divide(3)); // w * 1/3
+        selectColumn.prefWidthProperty().bind(myTableView.widthProperty().divide(3)); // w * 1/3
         myTableView.setItems(chargeNumList);
     }
 
