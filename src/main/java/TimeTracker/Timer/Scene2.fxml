@@ -19,6 +19,7 @@
             <Button fx:id="homeButtonAction" mnemonicParsing="false" onAction="#homeButtonAction" prefHeight="69.0" prefWidth="153.0" text="Home" />
             <Button fx:id="timerButton" mnemonicParsing="false" onAction="#timerButtonAction" prefHeight="69.0" prefWidth="153.0" text="Timer" />
             <Button fx:id="chargeNumberButton" mnemonicParsing="false" onAction="#chargeNumberButtonAction" prefHeight="69.0" prefWidth="153.0" text="Charge Numbers" />
+            <Button fx:id="settingButton" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" onAction="#settingsButtonAction" prefHeight="69.0" prefWidth="153.0" text="Settings" />
          </children>
       </VBox>
       <VBox layoutX="154.0" prefHeight="477.0" prefWidth="691.0">

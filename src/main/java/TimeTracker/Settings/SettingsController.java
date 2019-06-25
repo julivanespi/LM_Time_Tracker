@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TimeTracker.Timer;
+package TimeTracker.Settings;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,14 +16,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 
 /**
+ * FXML Controller class
  *
- * @author Julio
+ * @author julivanespi
  */
-public class TimerViewController implements Initializable {
+public class SettingsController implements Initializable {
 
     @FXML
     private Button homeButtonAction;
@@ -48,7 +48,13 @@ public class TimerViewController implements Initializable {
 
     @FXML
     private void timerButtonAction(ActionEvent event) throws IOException {
-        // Does nothing
+        System.out.println("Scene 2!");
+        Parent timerButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Timer/Scene2.fxml"));
+        Scene timerButtonScene = new Scene(timerButtonParent);
+        timerButtonScene.getStylesheets().add("/TimeTracker/Timer/TimerView.css");
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(timerButtonScene);
+        window.show();
     }
 
     @FXML
@@ -64,17 +70,15 @@ public class TimerViewController implements Initializable {
 
     @FXML
     private void settingsButtonAction(ActionEvent event) throws IOException {
-        System.out.println("Scene 4!");
-        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Settings/Scene4.fxml"));
-        Scene chargeNumButtonScene = new Scene(chargeNumParent);
-        chargeNumButtonScene.getStylesheets().add("/TimeTracker/Settings/Settings.css");
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(chargeNumButtonScene);
-        window.show();
+        // Does nothing
     }
 
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
     }
 
 }

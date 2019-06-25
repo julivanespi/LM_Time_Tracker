@@ -64,6 +64,8 @@ public class ChargeNumViewController implements Initializable {
     private TableColumn<ChargeNumber, String> nicknameColumn = new TableColumn("Nickname");
 
     ObservableList<ChargeNumber> chargeNumList = observableArrayList();
+    @FXML
+    private Button settingButton;
 
     // Side menu buttons
     @FXML
@@ -90,10 +92,15 @@ public class ChargeNumViewController implements Initializable {
 
     @FXML
     private void chargeNumberButtonAction(ActionEvent event) throws IOException {
-        System.out.println("Scene 3!");
-        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/ChargeNumber/Scene3.fxml"));
+        // Does nothing
+    }
+
+    @FXML
+    private void settingsButtonAction(ActionEvent event) throws IOException {
+        System.out.println("Scene 4!");
+        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Settings/Scene4.fxml"));
         Scene chargeNumButtonScene = new Scene(chargeNumParent);
-        chargeNumButtonScene.getStylesheets().add("/TimeTracker/ChargeNumber/ChargeNumberView.css");
+        chargeNumButtonScene.getStylesheets().add("/TimeTracker/Settings/Settings.css");
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(chargeNumButtonScene);
         window.show();
@@ -183,4 +190,5 @@ public class ChargeNumViewController implements Initializable {
         }
         return cn;
     }
+
 }
