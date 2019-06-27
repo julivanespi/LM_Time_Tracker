@@ -5,6 +5,7 @@
  */
 package TimeTracker.Timer;
 
+import TimeTracker.StartUp.InitTimeTracker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +41,11 @@ public class TimerViewController implements Initializable {
         System.out.println("Scene 1!");
         Parent homeButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
         Scene homeButtonScene = new Scene(homeButtonParent);
-        homeButtonScene.getStylesheets().add("/TimeTracker/HomeView/HomeView.css");
+        if (InitTimeTracker.isDefaultCss()) {
+            homeButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+        } else {
+            homeButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+        }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(homeButtonScene);
         window.show();
@@ -56,7 +61,11 @@ public class TimerViewController implements Initializable {
         System.out.println("Scene 3!");
         Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/ChargeNumber/Scene3.fxml"));
         Scene chargeNumButtonScene = new Scene(chargeNumParent);
-        chargeNumButtonScene.getStylesheets().add("/TimeTracker/ChargeNumber/ChargeNumberView.css");
+        if (InitTimeTracker.isDefaultCss()) {
+            chargeNumButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+        } else {
+            chargeNumButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+        }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(chargeNumButtonScene);
         window.show();
@@ -66,10 +75,14 @@ public class TimerViewController implements Initializable {
     private void settingsButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 4!");
         Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Settings/Scene4.fxml"));
-        Scene chargeNumButtonScene = new Scene(chargeNumParent);
-        chargeNumButtonScene.getStylesheets().add("/TimeTracker/Settings/Settings.css");
+        Scene settingsButtonScene = new Scene(chargeNumParent);
+        if (InitTimeTracker.isDefaultCss()) {
+            settingsButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+        } else {
+            settingsButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+        }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(chargeNumButtonScene);
+        window.setScene(settingsButtonScene);
         window.show();
     }
 

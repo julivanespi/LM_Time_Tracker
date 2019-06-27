@@ -5,6 +5,7 @@
  */
 package TimeTracker.ChargeNumber;
 
+import TimeTracker.StartUp.InitTimeTracker;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,7 +14,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,14 +61,13 @@ public class ChargeNumViewController implements Initializable {
     private Button saveCharNumsButton;
     @FXML
     private Button settingButton;
-    
+
     @FXML
     private TableColumn<ChargeNumber, String> ioColumn = new TableColumn("IO");
     @FXML
     private TableColumn<ChargeNumber, String> nicknameColumn = new TableColumn("Nickname");
     @FXML
     private TableColumn<ChargeNumber, CheckBox> selectColumn = new TableColumn("Select");
-    
 
     ObservableList<ChargeNumber> chargeNumList = observableArrayList();
 
@@ -78,7 +77,11 @@ public class ChargeNumViewController implements Initializable {
         System.out.println("Scene 1!");
         Parent homeButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
         Scene homeButtonScene = new Scene(homeButtonParent);
-        homeButtonScene.getStylesheets().add("/TimeTracker/HomeView/HomeView.css");
+        if (InitTimeTracker.isDefaultCss()) {
+            homeButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+        } else {
+            homeButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+        }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(homeButtonScene);
         window.show();
@@ -89,7 +92,11 @@ public class ChargeNumViewController implements Initializable {
         System.out.println("Scene 2!");
         Parent timerButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Timer/Scene2.fxml"));
         Scene timerButtonScene = new Scene(timerButtonParent);
-        timerButtonScene.getStylesheets().add("/TimeTracker/Timer/TimerView.css");
+        if (InitTimeTracker.isDefaultCss()) {
+            timerButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+        } else {
+            timerButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+        }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(timerButtonScene);
         window.show();
@@ -104,16 +111,20 @@ public class ChargeNumViewController implements Initializable {
     private void settingsButtonAction(ActionEvent event) throws IOException {
         System.out.println("Scene 4!");
         Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Settings/Scene4.fxml"));
-        Scene chargeNumButtonScene = new Scene(chargeNumParent);
-        chargeNumButtonScene.getStylesheets().add("/TimeTracker/Settings/Settings.css");
+        Scene settingsButtonScene = new Scene(chargeNumParent);
+        if (InitTimeTracker.isDefaultCss()) {
+            settingsButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+        } else {
+            settingsButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+        }
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(chargeNumButtonScene);
+        window.setScene(settingsButtonScene);
         window.show();
     }
 
     /**
-     * This method is called when the user clicks the "Add" button when
-     * presenting Scene3.
+     * This action event method is called when the user clicks the "Add" button
+     * when presenting Scene3.
      *
      * @param event
      */
@@ -130,14 +141,19 @@ public class ChargeNumViewController implements Initializable {
         nicknameTextFieldBox.clear();
     }
 
+    /**
+     * This action event method deletes a specified charge number.
+     *
+     * @param event
+     */
     @FXML
     private void deleteChargeNumButtonAction(ActionEvent event) {
         // TODO: Add functionality to delete charge numbers
         //myTableView.getItems().removeAll(myTableView.getSelectionModel().getSelectedItem());
         ObservableList<ChargeNumber> dataListRemove = FXCollections.observableArrayList();
         // looping through all the checked charge numbers
-        for(ChargeNumber pair : chargeNumList){
-            if(pair.getSelect().isSelected()){
+        for (ChargeNumber pair : chargeNumList) {
+            if (pair.getSelect().isSelected()) {
                 dataListRemove.add(pair);
             }
         }

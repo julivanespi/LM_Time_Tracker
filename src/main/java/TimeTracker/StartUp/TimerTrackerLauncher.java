@@ -19,11 +19,20 @@ public class TimerTrackerLauncher extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        // Init config file
+        InitTimeTracker.applicationInitCofig();
+
         Parent root = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/TimeTracker/HomeView/HomeView.css");
-
+        // Checking the css.
+        if (InitTimeTracker.isDefaultCss()) {
+            scene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+        } else {
+            scene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+        }
+        //scene.getStylesheets().add("/TimeTracker/HomeView/HomeView.css");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
