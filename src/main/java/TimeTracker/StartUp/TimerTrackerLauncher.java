@@ -23,16 +23,15 @@ public class TimerTrackerLauncher extends Application {
         // Init config file
         InitTimeTracker.applicationInitCofig();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Scene1.fxml"));
 
         Scene scene = new Scene(root);
         // Checking the css.
         if (InitTimeTracker.isDefaultCss()) {
-            scene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
+            scene.getStylesheets().add("view/resources/TimeTracker.css");
         } else {
-            scene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
+            scene.getStylesheets().add("view/resources/TimeTrackerLight.css");
         }
-        //scene.getStylesheets().add("/TimeTracker/HomeView/HomeView.css");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

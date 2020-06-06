@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TimeTracker.ChargeNumber;
+package controller;
 
 import TimeTracker.StartUp.InitTimeTracker;
 import java.io.BufferedReader;
@@ -34,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.ChargeNumber;
 
 /**
  *
@@ -48,19 +49,11 @@ public class ChargeNumViewController implements Initializable {
     @FXML
     private TextField nicknameTextFieldBox;
     @FXML
-    private Button homeButtonAction;
-    @FXML
-    private Button timerButton;
-    @FXML
-    private Button chargeNumberButton;
-    @FXML
     private Button addChargeNumButton;
     @FXML
     private Button deleteCharNumButton;
     @FXML
     private Button saveCharNumsButton;
-    @FXML
-    private Button settingButton;
 
     @FXML
     private TableColumn<ChargeNumber, String> ioColumn = new TableColumn("IO");
@@ -70,57 +63,6 @@ public class ChargeNumViewController implements Initializable {
     private TableColumn<ChargeNumber, CheckBox> selectColumn = new TableColumn("Select");
 
     ObservableList<ChargeNumber> chargeNumList = observableArrayList();
-
-    // Side menu buttons
-    @FXML
-    private void homeButtonAction(ActionEvent event) throws IOException {
-        System.out.println("Scene 1!");
-        Parent homeButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/HomeView/Scene1.fxml"));
-        Scene homeButtonScene = new Scene(homeButtonParent);
-        if (InitTimeTracker.isDefaultCss()) {
-            homeButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
-        } else {
-            homeButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
-        }
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(homeButtonScene);
-        window.show();
-    }
-
-    @FXML
-    private void timerButtonAction(ActionEvent event) throws IOException {
-        System.out.println("Scene 2!");
-        Parent timerButtonParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Timer/Scene2.fxml"));
-        Scene timerButtonScene = new Scene(timerButtonParent);
-        if (InitTimeTracker.isDefaultCss()) {
-            timerButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
-        } else {
-            timerButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
-        }
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(timerButtonScene);
-        window.show();
-    }
-
-    @FXML
-    private void chargeNumberButtonAction(ActionEvent event) throws IOException {
-        // Does nothing
-    }
-
-    @FXML
-    private void settingsButtonAction(ActionEvent event) throws IOException {
-        System.out.println("Scene 4!");
-        Parent chargeNumParent = FXMLLoader.load(getClass().getResource("/TimeTracker/Settings/Scene4.fxml"));
-        Scene settingsButtonScene = new Scene(chargeNumParent);
-        if (InitTimeTracker.isDefaultCss()) {
-            settingsButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTracker.css");
-        } else {
-            settingsButtonScene.getStylesheets().add("/TimeTracker/Styles/TimeTrackerLight.css");
-        }
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(settingsButtonScene);
-        window.show();
-    }
 
     /**
      * This action event method is called when the user clicks the "Add" button

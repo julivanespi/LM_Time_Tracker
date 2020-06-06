@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TimeTracker.ChargeNumber;
+package model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
@@ -18,7 +18,7 @@ public class ChargeNumber {
     private SimpleStringProperty nickName;
     private CheckBox select;
     
-    ChargeNumber(String ioNumber, String nickName){
+    public ChargeNumber(String ioNumber, String nickName){
         this.ioNumber = new SimpleStringProperty(ioNumber);
         this.nickName = new SimpleStringProperty(nickName);
         this.select = new CheckBox();
