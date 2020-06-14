@@ -40,7 +40,7 @@ public class InitTimeTracker {
                 writer.println("Add,Charge_Number");
                 writer.close();
 
-                System.out.println("done!");
+                //System.out.println("done!");
             } catch (Exception e) {
                 System.err.println("Coudln't create charge number file.");
             }

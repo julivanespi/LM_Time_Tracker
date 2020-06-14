@@ -5,7 +5,6 @@
  */
 package controller;
 
-import model.InitTimeTracker;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,18 +21,13 @@ import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import model.ChargeNumber;
 
 /**
@@ -48,12 +42,6 @@ public class ChargeNumViewController implements Initializable {
     private TextField ioTextFieldBox;
     @FXML
     private TextField nicknameTextFieldBox;
-    @FXML
-    private Button addChargeNumButton;
-    @FXML
-    private Button deleteCharNumButton;
-    @FXML
-    private Button saveCharNumsButton;
 
     @FXML
     private TableColumn<ChargeNumber, String> ioColumn = new TableColumn("IO");

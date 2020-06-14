@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import services.SettingsManager;
 
 /**
  *
@@ -20,6 +21,9 @@ public class TimerTrackerLauncher extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        // try new settings thing
+        SettingsManager sm = new SettingsManager();
+        
         // Init config file
         InitTimeTracker.applicationInitCofig();
 
@@ -27,13 +31,16 @@ public class TimerTrackerLauncher extends Application {
 
         Scene scene = new Scene(root);
         // Checking the css.
-        if (InitTimeTracker.isDefaultCss()) {
+        if (sm.parse().getTheme().equals(Theme.DEFAULT.getLabel())) {
             scene.getStylesheets().add("view/resources/TimeTracker.css");
         } else {
             scene.getStylesheets().add("view/resources/TimeTrackerLight.css");
         }
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setMinWidth(845.00);
+        stage.setMinHeight(477.0);
+        //stage.setMaximized(true);
+        //stage.setResizable(false);
         stage.show();
     }
 

@@ -33,6 +33,10 @@ public class MainShellController implements Initializable {
     @FXML
     private void homeButtonAction(ActionEvent event) throws IOException {
         vbox = FXMLLoader.load(getClass().getResource("/view/HomeView.fxml"));
+        AnchorPane.setTopAnchor(vbox, 0.0);
+        AnchorPane.setRightAnchor(vbox, 0.0);
+        AnchorPane.setLeftAnchor(vbox, 0.0);
+        AnchorPane.setBottomAnchor(vbox, 0.0);
         viewPane.getChildren().setAll(vbox);
     }
 
@@ -44,6 +48,10 @@ public class MainShellController implements Initializable {
     @FXML
     private void chargeNumberButtonAction(ActionEvent event) throws IOException {
         vbox = FXMLLoader.load(getClass().getResource("/view/ChargeNumberView.fxml"));
+        AnchorPane.setTopAnchor(vbox, 0.0);
+        AnchorPane.setRightAnchor(vbox, 0.0);
+        AnchorPane.setLeftAnchor(vbox, 0.0);
+        AnchorPane.setBottomAnchor(vbox, 0.0);
         viewPane.getChildren().setAll(vbox);
     }
 
@@ -51,6 +59,10 @@ public class MainShellController implements Initializable {
     private void settingsButtonAction(ActionEvent event) throws IOException {
         
         vbox = FXMLLoader.load(getClass().getResource("/view/SettingsView.fxml"));
+        AnchorPane.setTopAnchor(vbox, 0.0);
+        AnchorPane.setRightAnchor(vbox, 0.0);
+        AnchorPane.setLeftAnchor(vbox, 0.0);
+        AnchorPane.setBottomAnchor(vbox, 0.0);
         viewPane.getChildren().setAll(vbox);
     }
 

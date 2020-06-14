@@ -7,9 +7,13 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.web.WebView;
+import javax.xml.bind.JAXBException;
+import services.SettingsManager;
 
 /**
  * FXML Controller class
@@ -18,16 +22,20 @@ import javafx.scene.web.WebView;
  */
 public class HomeViewController implements Initializable {
 
+    private SettingsManager sm = new SettingsManager();
     @FXML
-    private WebView youtubePanel;
+    private WebView personalViewPanel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        youtubePanel.getEngine().load("https://www.youtube.com/embed?v=kWIraoPl3A8");
+        try {
+            personalViewPanel.getEngine().load(sm.parse().getPersonalUrl());
+        } catch (JAXBException ex) {
+            Logger.getLogger(HomeViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
     
 }

@@ -19,22 +19,22 @@
                     </image>
                 </ImageView>
                 <Button fx:id="homeButtonAction" mnemonicParsing="false" onAction="#homeButtonAction" prefHeight="69.0" prefWidth="153.0" text="Home" />
-                <Button fx:id="timerButton" mnemonicParsing="false" onAction="#timerButtonAction" prefHeight="69.0" prefWidth="153.0" text="Timer" />
+                <Button fx:id="timerButton" mnemonicParsing="false" onAction="#timerButtonAction" prefHeight="69.0" prefWidth="153.0" text="Tracker" />
                 <Button fx:id="chargeNumberButton" mnemonicParsing="false" onAction="#chargeNumberButtonAction" prefHeight="69.0" prefWidth="153.0" text="Charge Numbers" />
                 <Button fx:id="settingButton" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" onAction="#settingsButtonAction" prefHeight="69.0" prefWidth="153.0" text="Settings" />
             </children>
         </VBox>
-        <VBox layoutX="154.0" prefHeight="477.0" prefWidth="691.0">
+        <VBox layoutX="154.0" prefHeight="477.0" prefWidth="691.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="154.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox prefHeight="87.0" prefWidth="691.0">
+                <HBox alignment="CENTER" prefHeight="87.0" prefWidth="691.0">
                     <children>
-                        <Label alignment="CENTER" prefHeight="87.0" prefWidth="698.0" text="LM Time Tracker">
+                        <Label alignment="CENTER" prefHeight="87.0" prefWidth="698.0" text="LM Time Tracker" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="SansSerif Bold Italic" size="33.0" />
                      </font></Label>
                     </children>
                 </HBox>
-            <AnchorPane fx:id="viewPane" prefHeight="390.0" prefWidth="690.0" />
+            <AnchorPane fx:id="viewPane" prefHeight="390.0" prefWidth="690.0" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
     </children>
