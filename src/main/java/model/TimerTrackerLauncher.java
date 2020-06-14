@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TimeTracker.StartUp;
+package model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class TimerTrackerLauncher extends Application {
         // Init config file
         InitTimeTracker.applicationInitCofig();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Scene1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/MainShell.fxml"));
 
         Scene scene = new Scene(root);
         // Checking the css.

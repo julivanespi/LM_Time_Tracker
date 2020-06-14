@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HomeViewController">
+<AnchorPane id="AnchorPane" prefHeight="477.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainShellController">
     <children>
         <VBox prefHeight="477.0" prefWidth="144.0">
             <children>
@@ -27,10 +28,13 @@
             <children>
                 <HBox prefHeight="87.0" prefWidth="691.0">
                     <children>
-                        <Label prefHeight="91.0" prefWidth="296.0" text="Top Banner" />
+                        <Label alignment="CENTER" prefHeight="87.0" prefWidth="698.0" text="LM Time Tracker">
+                     <font>
+                        <Font name="SansSerif Bold Italic" size="33.0" />
+                     </font></Label>
                     </children>
                 </HBox>
-            <AnchorPane fx:id="viewPane" prefHeight="390.0" prefWidth="691.0" />
+            <AnchorPane fx:id="viewPane" prefHeight="390.0" prefWidth="690.0" />
             </children>
         </VBox>
     </children>

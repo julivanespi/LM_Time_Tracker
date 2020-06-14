@@ -5,7 +5,7 @@
  */
 package controller;
 
-import TimeTracker.StartUp.InitTimeTracker;
+import model.InitTimeTracker;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -124,6 +124,7 @@ public class ChargeNumViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        System.out.println("yup");
         // read the charge number file in documents
         try {
             // might not have to add this if else
