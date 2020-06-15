@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javax.xml.bind.JAXBException;
 import model.Settings;
 import model.Theme;
@@ -36,6 +37,12 @@ public class SettingsController implements Initializable {
                     "default",
                     "light"
             );
+    @FXML
+    private TextField starsUrlTextBox;
+    @FXML
+    private TextField personalUrlTextBox;
+    @FXML
+    private TextField chargeNumberTextBox;
 
 
     /**
@@ -51,6 +58,9 @@ public class SettingsController implements Initializable {
             } else {
                 styleComboBox.setPromptText("light");
             }
+            starsUrlTextBox.setText(sm.parse().getStarsUrl());
+            personalUrlTextBox.setText(sm.parse().getPersonalUrl());
+            chargeNumberTextBox.setText(sm.parse().getLocationChargeNumbers());
         } catch (JAXBException ex) {
             Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,6 +73,10 @@ public class SettingsController implements Initializable {
         sm.write(settings);
         
         
+    }
+
+    @FXML
+    private void browseButton(ActionEvent event) {
     }
 
 }
