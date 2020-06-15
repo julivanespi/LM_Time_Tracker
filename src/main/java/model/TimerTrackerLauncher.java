@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import services.ChargeNumberManager;
 import services.SettingsManager;
 
 /**
@@ -23,6 +24,7 @@ public class TimerTrackerLauncher extends Application {
 
         // try new settings thing
         SettingsManager sm = new SettingsManager();
+        ChargeNumberManager cnm = new ChargeNumberManager();
         
         // Init config file
         InitTimeTracker.applicationInitCofig();
@@ -39,8 +41,6 @@ public class TimerTrackerLauncher extends Application {
         stage.setScene(scene);
         stage.setMinWidth(845.00);
         stage.setMinHeight(477.0);
-        //stage.setMaximized(true);
-        //stage.setResizable(false);
         stage.show();
     }
 

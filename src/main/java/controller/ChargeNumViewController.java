@@ -22,13 +22,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.xml.bind.JAXBException;
 import model.ChargeNumber;
+import services.ChargeNumberManager;
 
 /**
  *
@@ -36,6 +37,7 @@ import model.ChargeNumber;
  */
 public class ChargeNumViewController implements Initializable {
 
+    private ChargeNumberManager chm = new ChargeNumberManager();
     @FXML
     private TableView<ChargeNumber> myTableView;
     @FXML
@@ -98,15 +100,17 @@ public class ChargeNumViewController implements Initializable {
      * @throws IOException
      */
     @FXML
-    private void saveChargeNumsButtonAction(ActionEvent event) throws IOException {
-        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
-        File dir = new File(fileName);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(dir));
+    private void saveChargeNumsButtonAction(ActionEvent event) throws IOException, JAXBException {
+//        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
+//        File dir = new File(fileName);
+//        BufferedWriter writer = new BufferedWriter(new FileWriter(dir));
+        chm.clearTheList();
         for (ChargeNumber ioNum : myTableView.getItems()) {
-            writer.write(ioNum.getIoNumber() + "," + ioNum.getNickName());
-            writer.newLine();
+            chm.addChargeNumber(ioNum);
+//            writer.write(ioNum.getIoNumber() + "," + ioNum.getNickName());
+//            writer.newLine();
         }
-        writer.close();
+//        writer.close();
     }
 
     @Override
@@ -121,7 +125,7 @@ public class ChargeNumViewController implements Initializable {
             } else {
                 chargeNumList = readSavedChargeNum();
             }
-        } catch (IOException ex) {
+        } catch (IOException | JAXBException ex) {
             Logger.getLogger(ChargeNumViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         ioColumn.setCellValueFactory(new PropertyValueFactory<>("IoNumber"));
@@ -140,17 +144,25 @@ public class ChargeNumViewController implements Initializable {
      * @return cn ObservableList of ChargeNumber objects.
      * @throws IOException
      */
-    public ObservableList<ChargeNumber> readSavedChargeNum() throws IOException {
-        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
-        File dir = new File(fileName);
+    public ObservableList<ChargeNumber> readSavedChargeNum() throws IOException, JAXBException {
+        
         ObservableList<ChargeNumber> cn = observableArrayList();
-        BufferedReader reader = Files.newBufferedReader(Paths.get(fileName));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] ioAndNickName = line.split(",");
-            // Add the student to the list
-            cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
+        
+        for(ChargeNumber chargeNumber : chm.parse().getMyList()){
+            ChargeNumber temp = new ChargeNumber(chargeNumber.get_IoNumber(), chargeNumber.get_NickName());
+            cn.add(temp);
         }
+
+//        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
+//        File dir = new File(fileName);
+//        ObservableList<ChargeNumber> cn = observableArrayList();
+//        BufferedReader reader = Files.newBufferedReader(Paths.get(fileName));
+//        String line;
+//        while ((line = reader.readLine()) != null) {
+//            String[] ioAndNickName = line.split(",");
+//            // Add the student to the list
+//            cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
+//        }
         return cn;
     }
 
