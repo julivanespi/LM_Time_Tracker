@@ -80,8 +80,7 @@ public class ChargeNumViewController implements Initializable {
      */
     @FXML
     private void deleteChargeNumButtonAction(ActionEvent event) {
-        // TODO: Add functionality to delete charge numbers
-        //myTableView.getItems().removeAll(myTableView.getSelectionModel().getSelectedItem());
+        // TODO: Add functionality to delete charge number
         ObservableList<ChargeNumber> dataListRemove = FXCollections.observableArrayList();
         // looping through all the checked charge numbers
         for (ChargeNumber pair : chargeNumList) {
@@ -101,16 +100,10 @@ public class ChargeNumViewController implements Initializable {
      */
     @FXML
     private void saveChargeNumsButtonAction(ActionEvent event) throws IOException, JAXBException {
-//        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
-//        File dir = new File(fileName);
-//        BufferedWriter writer = new BufferedWriter(new FileWriter(dir));
         chm.clearTheList();
         for (ChargeNumber ioNum : myTableView.getItems()) {
             chm.addChargeNumber(ioNum);
-//            writer.write(ioNum.getIoNumber() + "," + ioNum.getNickName());
-//            writer.newLine();
         }
-//        writer.close();
     }
 
     @Override
@@ -145,24 +138,11 @@ public class ChargeNumViewController implements Initializable {
      * @throws IOException
      */
     public ObservableList<ChargeNumber> readSavedChargeNum() throws IOException, JAXBException {
-        
         ObservableList<ChargeNumber> cn = observableArrayList();
-        
         for(ChargeNumber chargeNumber : chm.parse().getMyList()){
             ChargeNumber temp = new ChargeNumber(chargeNumber.get_IoNumber(), chargeNumber.get_NickName());
             cn.add(temp);
         }
-
-//        String fileName = System.getProperty("user.home") + "/Documents/TimerTracker/charge_numbers.txt";
-//        File dir = new File(fileName);
-//        ObservableList<ChargeNumber> cn = observableArrayList();
-//        BufferedReader reader = Files.newBufferedReader(Paths.get(fileName));
-//        String line;
-//        while ((line = reader.readLine()) != null) {
-//            String[] ioAndNickName = line.split(",");
-//            // Add the student to the list
-//            cn.add(new ChargeNumber(ioAndNickName[0], ioAndNickName[1]));
-//        }
         return cn;
     }
 

@@ -79,4 +79,11 @@ public class SettingsController implements Initializable {
     private void browseButton(ActionEvent event) {
     }
 
+    @FXML
+    private void enterPersonalUrl(ActionEvent event) throws JAXBException {
+        Settings settings = sm.parse();
+        settings.setPersonalUrl(personalUrlTextBox.getText());
+        sm.write(settings);
+    }
+
 }
